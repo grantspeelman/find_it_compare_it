@@ -1,0 +1,19 @@
+language: ruby
+rvm:
+  - 1.9.2
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - psql -c 'create database find_it_compare_it;' -U postgres
+  - bundle exec rake db:automigrate
+script: bundle exec rake spec
+notifications:
+  email:
+    recipients:
+      - grantspeelman+travis@gmail.com
+    on_success: change
+    on_failure: change
+env:
+  - CAPYBARA_DRIVER=racktest
+  - CAPYBARA_DRIVER=poltergeist
+  - CAPYBARA_DRIVER=selenium

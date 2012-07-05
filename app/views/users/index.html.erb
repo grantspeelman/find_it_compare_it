@@ -1,0 +1,19 @@
+<%= page_header("Listing users") %>
+
+<div class="span10">
+  <table class="table-striped">
+    <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= link_to(user.name, user) %></td>
+      <td><%= edit_icon(user) if can?(:update,user) %></td>
+    </tr>
+  <% end %>
+    </tbody>
+  </table>
+  <%= paginate @users %>
+</div>
+
+
+
+

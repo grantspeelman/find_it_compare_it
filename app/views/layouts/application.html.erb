@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Online Trader</title>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= render 'shared/navigation' %>
+
+<div id="main-container" class="container">
+
+  <%= yield :page_header %>
+
+  <%- flash.each do |name, msg| -%>
+      <% name = 'error' if name.to_s == 'alert' %>
+      <div class="alert-message <%= name %> fade in" data-alert="alert">
+        <a class="close" href="#">×</a>
+        <%= msg.to_s %>
+      </div>
+  <%- end -%>
+
+  <div class="row">
+
+    <%= side_nav_link_to 'Back', session['return-to'] unless current_page?(session['return-to']) %>
+    <div class="span2 sidebar">
+      <ul class="nav nav-pills nav-stacked">
+        <%= yield :side_nav %>
+      </ul>
+    </div>
+
+    <%= yield %>
+
+  </div>
+</div>
+<!-- /container -->
+
+
+</body>
+</html>
