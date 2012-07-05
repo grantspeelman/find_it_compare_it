@@ -8,6 +8,7 @@ class User
   property 'time_zone', String
 
   has n, :authorizations
+  has n, :boards
 
   attr_protected :role
 

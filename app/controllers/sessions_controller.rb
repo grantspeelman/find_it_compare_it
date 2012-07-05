@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
 
   def create
-    User.logger.info request.env['omniauth.auth'].inspect
     auth = {:provider => request.env['omniauth.auth']['provider'].to_s,
             :uid => request.env['omniauth.auth']['uid'].to_s,
             :name => request.env['omniauth.auth']['info']['name'].to_s}

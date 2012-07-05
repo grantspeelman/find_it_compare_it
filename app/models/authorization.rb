@@ -12,11 +12,15 @@ class Authorization
   after :destroy, :destroy_user_if_last_authorization
 
   def self.find_from_hash(hash)
-    first(:uid => hash[:uid], :provider => hash[:provider])
+    get(:uid => hash[:uid], :provider => hash[:provider])
   end
 
   def self.create_from_hash(hash, user = nil)
     user ||= User.create(:name => hash[:name])
+    if hash[:provider] == 'developer' || User.count == 1
+      user.role = 'admin'
+      user.save
+    end
     Authorization.create(:user => user, :uid => hash[:uid], :provider => hash[:provider])
   end
 

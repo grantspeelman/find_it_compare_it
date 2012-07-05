@@ -16,15 +16,16 @@
 
   <%- flash.each do |name, msg| -%>
       <% name = 'error' if name.to_s == 'alert' %>
-      <div class="alert-message <%= name %> fade in" data-alert="alert">
-        <a class="close" href="#">×</a>
+      <% name = 'info' if name.to_s == 'notice' %>
+      <div class="alert alert-<%= name %>">
+        <a class="close" data-dismiss="alert" href="#">×</a>
         <%= msg.to_s %>
       </div>
   <%- end -%>
 
   <div class="row">
 
-    <%= side_nav_link_to 'Back', session['return-to'] unless current_page?(session['return-to']) %>
+    <%= side_nav_link_to 'Back', session['return-to'] if user_signed_in? && !current_page?(session['return-to'])  %>
     <div class="span2 sidebar">
       <ul class="nav nav-pills nav-stacked">
         <%= yield :side_nav %>

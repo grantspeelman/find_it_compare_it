@@ -18,6 +18,7 @@
           <%= main_nav_link('Home', root_path) %>
           <% if user_signed_in? %>
             <%= main_nav_link('My Account', user_path(current_user)) %>
+            <%= main_nav_link('Boards', boards_path) %>
             <%= main_nav_link('Users', users_path) if can?(:list,User) %>
             <%= main_nav_link('Logout', logout_path, :method=>'delete') %>
           <% else %>

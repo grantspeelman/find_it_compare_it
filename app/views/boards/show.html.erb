@@ -1,0 +1,15 @@
+<%= side_nav_link_to 'Edit Board', action: :edit, id: @board if can? :update, @board %>
+<%= side_nav_link_to 'List Boards', action: :index %>
+
+<div class="span10">
+    <p>
+    <b>Name:</b>
+    <%= @board.name %>
+  </p>
+    <p>
+    <b>Description:</b>
+    <%= @board.description %>
+  </p>
+  </div>
+
+

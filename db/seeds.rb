@@ -6,4 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 include FactoryGirl::Syntax::Methods
-create_list(:user,25) if User.count <= 1
+require './spec/support/datamapper_factory_girl'
+if Rails.env.development?
+  if User.count <= 1
+    users = create_list(:user,21)
+  else
+    users = User.all
+  end
+  if Board.count <= 1
+    100.times { create(:board, user: users.sample) }
+  end
+end

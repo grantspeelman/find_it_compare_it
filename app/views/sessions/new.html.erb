@@ -1,25 +1,28 @@
-<h1>Login</h1>
+<%= page_header("Login") %>
 
-<p>You can login using on of the following services</p>
+<div class="span5">
+  <p>You can login using on of the following services</p>
 
-<label>Twitter : </label>
-<%= link_to(image_tag("twitter_32.png"),
-                      '/auth/twitter',
-                      :title => 'Login with Twitter') %>
-<br/>
-<label>Facebook :</label>
-          <%= link_to(image_tag("facebook_32.png"),
-                      '/auth/facebook',
-                      :title => 'Login with Facebook') %>
-<br/>
-<label>Google :</label>
-          <%= link_to(image_tag("google_32.png"),
-                      '/auth/google',
-                      :title => 'Login with Google') %>
+  <label>Twitter : </label>
+  <%= link_to(image_tag("twitter_32.png"),
+              '/auth/twitter',
+              :title => 'Login with Twitter') %>
+  <br/>
+  <label>Facebook :</label>
+  <%= link_to(image_tag("facebook_32.png"),
+              '/auth/facebook',
+              :title => 'Login with Facebook') %>
+  <br/>
+  <label>Google :</label>
+  <%= link_to(image_tag("google_32.png"),
+              '/auth/google',
+              :title => 'Login with Google') %>
+</div>
 <% if Rails.env.development? %>
-<br/>
-<label>Developer :</label>
-<%= link_to(image_tag("yahoo_32.png"),
-            '/auth/developer',
-            :title => 'Login with Developer') %>
+  <div class="span5">
+    <label>Developer :</label>
+    <%= link_to(image_tag("yahoo_32.png"),
+                '/auth/developer',
+                :title => 'Login with Developer') %>
+  </div>
 <% end %>
