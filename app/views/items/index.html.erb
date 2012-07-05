@@ -1,0 +1,28 @@
+<%= page_header("#{@board.try(:name)} Listing items") %>
+
+<%= side_nav_link_to 'Add Item', action: :new if can? :create, Item  %>
+
+<div class="span10">
+  <table class="table table-stripped">
+    <tr>
+        <th>Url</th>
+        <th>Notes</th>
+        <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+  <% @items.each do |item| %>
+    <tr>
+        <td><%= item.url %></td>
+        <td><%= truncate(item.notes) %></td>
+        <td><%= link_to 'Show', {action: :show, id: item}, id: dom_id(item, :show) %></td>
+      <td><%= link_to 'Edit', {action: :edit, id: item}, id: dom_id(item, :edit) if can? :update, item %></td>
+      <td><%= link_to 'Delete', {action: :destroy, id: item}, data: {confirm: 'Are you sure?'}, method: :delete, id: dom_id(item, :delete) if can? :destroy, item %></td>
+    </tr>
+  <% end %>
+  </table>
+  <%= paginate @items %>
+</div>
+
+

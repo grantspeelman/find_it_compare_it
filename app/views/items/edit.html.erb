@@ -1,0 +1,8 @@
+<%= page_header("#{@board.try(:name)} Editing item") %>
+
+<div class="span10">
+  <%= render 'form' %>
+</div>
+
+<%= side_nav_link_to 'Show Item', action: :show, id: @item %>
+<%= side_nav_link_to 'List Items', action: :index %>

@@ -1,0 +1,17 @@
+<%= page_header("#{@board.try(:name)} Show item") %>
+
+<%= side_nav_link_to 'Edit Item', action: :edit, id: @item if can? :update, @item %>
+<%= side_nav_link_to 'List Items', action: :index %>
+
+<div class="span10">
+    <p>
+    <b>Url:</b>
+    <%= @item.url %>
+  </p>
+    <p>
+    <b>Notes:</b>
+    <%= @item.notes %>
+  </p>
+  </div>
+
+
