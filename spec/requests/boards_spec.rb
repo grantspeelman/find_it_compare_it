@@ -17,6 +17,7 @@ describe "Boards" do
 
       it "should list boards" do
         my_board = create(:board,name: 'My Board', user: current_user)
+        my_board.user_id.should == current_user.id
         other_user_board = create(:board, name: 'Other Board', user: create(:user))
         click_link 'Boards'
         page.should have_content(my_board.name)
@@ -66,7 +67,7 @@ describe "Boards" do
     describe "delete" do
 
       it "should allow to delete board" do
-        my_board = create(:board, name: 'My Board', user: create(:user))
+        my_board = create(:board, name: 'My Board', user: current_user)
         click_link 'Boards'
         click_link "delete_board_#{my_board.id}"
         page.driver.browser.switch_to.alert.accept if Capybara.default_driver == :selenium

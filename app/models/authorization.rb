@@ -2,8 +2,8 @@ class Authorization
   include DataMapper::Resource
 
   property :id,        Serial
-  property :uid,       String,  :required => true, :unique => :provider
-  property :provider,  String,  :required => true
+  property :uid,       String,  :required => true, :unique => :provider, :index => true
+  property :provider,  String,  :required => true, :index => true
 
   belongs_to :user
 
@@ -12,7 +12,7 @@ class Authorization
   after :destroy, :destroy_user_if_last_authorization
 
   def self.find_from_hash(hash)
-    get(:uid => hash[:uid], :provider => hash[:provider])
+    first(:uid => hash[:uid], :provider => hash[:provider])
   end
 
   def self.create_from_hash(hash, user = nil)
