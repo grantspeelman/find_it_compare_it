@@ -1,3 +1,5 @@
+<%%= page_header("Show <%= human_name %>") %>
+
 <%%= side_nav_link_to 'Edit <%= human_name %>', action: :edit, id: @<%= singular_table_name %> if can? :update, @<%= singular_table_name %> %>
 <%%= side_nav_link_to 'List <%= human_name %>s', action: :index %>
 

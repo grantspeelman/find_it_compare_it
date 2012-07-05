@@ -1,6 +1,9 @@
 FindItCompareIt::Application.routes.draw do
 
-  resources :boards
+  resources :boards do
+    resources :items
+  end
+
   resources :users
 
   #resources :cards do

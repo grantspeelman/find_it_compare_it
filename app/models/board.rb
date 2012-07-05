@@ -9,5 +9,7 @@ class Board
   timestamps :at
 
   belongs_to :user
+  has n, :items
+
   attr_protected :user_id
 end
