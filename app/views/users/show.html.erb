@@ -1,7 +1,7 @@
 <%= page_header(@user.name) %>
 
 <%= side_nav_link_to 'Edit', edit_user_path(@user) if can? :update, @user %>
-<%= side_nav_link_to 'List Users', users_path %>
+<%= side_nav_link_to 'List Users', users_path if can? :list, User %>
 
 
 <div class="span5">
@@ -33,6 +33,7 @@
       <label>Google</label>
       <%= image_tag("google_32.png") %>
     <% end %>
+
 
     <p>You can link other services to this account</p>
 
