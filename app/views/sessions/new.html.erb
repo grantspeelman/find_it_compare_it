@@ -16,3 +16,10 @@
           <%= link_to(image_tag("google_32.png"),
                       '/auth/google',
                       :title => 'Login with Google') %>
+<% if Rails.env.development? %>
+<br/>
+<label>Developer :</label>
+<%= link_to(image_tag("yahoo_32.png"),
+            '/auth/developer',
+            :title => 'Login with Developer') %>
+<% end %>

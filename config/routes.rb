@@ -1,22 +1,12 @@
-OnlineTrader::Application.routes.draw do
+FindItCompareIt::Application.routes.draw do
 
-  resources :users do |u|
-    collection do
-      get 'search'
-    end
-    resources :wants, :except => [:show, :edit, :update, :destroy]
-    resources :haves, :except => [:show, :edit, :update, :destroy]
-  end
+  resources :users
 
-  resources :haves
-  resources :wants
-  resources :trades, :except => [:destroy]
-
-  resources :cards do
-    collection do
-      get 'search'
-    end
-  end
+  #resources :cards do
+  #  collection do
+  #    get 'search'
+  #  end
+  #end
 
   match '/auth/:provider/callback', :to => 'sessions#create'
   match '/auth/failure', :to => 'sessions#failure'

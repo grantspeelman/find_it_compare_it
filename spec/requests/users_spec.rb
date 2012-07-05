@@ -15,22 +15,23 @@ describe "Users" do
 
     describe "index" do
 
-      it "should load page and allow paging" do
-        create_list(:user, 25)
-        click_link 'Users'
-        click_link 'Next'
-        page.should have_content('Listing users')
+      it "should not be able to list page" do
+        visit '/users'
+        page.should have_content('You are not authorized to access this page.')
       end
 
     end
 
     describe "show" do
 
+      it "my account" do
+        click_link 'My Account'
+        page.should have_content(current_user.name)
+      end
+
       it "should load page" do
         user = create(:user)
-        click_link 'Users'
-        page.should have_content('Listing users')
-        click_link user.name
+        visit "/users/#{user.id}"
         page.should have_content(user.name)
       end
 
@@ -47,7 +48,7 @@ describe "Users" do
 
     describe "update" do
 
-      it "should be able to update account" do
+      it "should be able to update my account" do
         click_link 'My Account'
         click_link 'Edit'
         click_button 'Update User'

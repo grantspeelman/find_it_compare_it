@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    authorize! :list, User
     store_location
     @users = @users.all(:order => 'name').page(params[:page])
 

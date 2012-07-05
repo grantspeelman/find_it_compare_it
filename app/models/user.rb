@@ -8,9 +8,6 @@ class User
   property 'time_zone', String
 
   has n, :authorizations
-  has n, :wants
-  has n, :haves, 'Have'
-  has n, :trades
 
   attr_protected :role
 
@@ -20,22 +17,6 @@ class User
 
   def to_s
     name
-  end
-
-  def want_card_names
-    wants.collect{|t|t.card_name}
-  end
-
-  def have_card_names
-    haves.collect{|t|t.card_name}
-  end
-
-  def wants_for(user)
-    user.wants.all(card_name: have_card_names)
-  end
-
-  def trades
-    Trade.all(:order => [:updated_at.desc, :created_at.desc])
   end
 
 end

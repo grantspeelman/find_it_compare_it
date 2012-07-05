@@ -282,4 +282,4 @@ DEPENDENCIES
   simple_form
   therubyracer (>= 0.9.8)
   thin
-  uglifier (>= 1.0.3)
+  uglifier

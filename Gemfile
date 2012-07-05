@@ -21,9 +21,8 @@ gem 'heroku'
 gem 'thin'
 
 group :assets do
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier'
   gem 'less-rails-bootstrap'
-#  gem 'sass-rails', '~> 3.2.3'
 end
 group :development, :test do
   gem 'rspec-rails'

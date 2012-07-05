@@ -1,8 +1,8 @@
 development:
-  uri: postgres://localhost/online_trader_development
+  uri: postgres://localhost/fici_development
 
 test:
-  uri: postgres://localhost/online_trader_test
+  uri: postgres://localhost/fici_test
 
 production:
    uri: <= ENV['DATABASE_URL'] %>
