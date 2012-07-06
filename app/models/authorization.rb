@@ -17,7 +17,7 @@ class Authorization
 
   def self.create_from_hash(hash, user = nil)
     user ||= User.create(:name => hash[:name])
-    if hash[:provider] == 'developer' || User.count == 1
+    if User.count(:role => 'admin') == 0
       user.role = 'admin'
       user.save
     end
