@@ -17,7 +17,7 @@ describe "Items" do
     describe "index" do
 
       it "should list items" do
-        my_item = create(:item,url: 'http://item', board: @board)
+        my_item = create(:item, url: 'http://item', board: @board)
         other_user_item = create(:item, url: 'Other Item', board: create(:board))
         click_link 'Boards'
         click_link "items_board_#{@board.id}"
@@ -26,7 +26,7 @@ describe "Items" do
       end
 
       it "should allow paging" do
-        create_list(:item,30, board: @board)
+        create_list(:item, 30, board: @board)
         click_link 'Boards'
         click_link "items_board_#{@board.id}"
         page.should have_content('Next')
@@ -49,12 +49,20 @@ describe "Items" do
         page.should have_content("http://dev")
       end
 
+      it "should allow to create via iframe" do
+        visit '/iframe/items/new'
+        select @board.name, :from => 'Board'
+        fill_in 'Url', with: "http://dev"
+        click_on 'Create'
+        page.should have_content("Item was successfully created. You may close the popup now.")
+      end
+
     end
 
     describe "update" do
 
       it "should allow to update" do
-        my_item = create(:item,url: 'http://hello', board: @board)
+        my_item = create(:item, url: 'http://hello', board: @board)
         click_link 'Boards'
         click_link "items_board_#{@board.id}"
         click_link "edit_item_#{my_item.id}"
@@ -64,7 +72,7 @@ describe "Items" do
       end
 
       it "wont allow to update other user item" do
-        other_user_item = create(:item,url: 'http://otheruser', board: create(:board))
+        other_user_item = create(:item, url: 'http://otheruser', board: create(:board))
         visit "/boards/#{other_user_item.board.id}/items/#{other_user_item.id}/edit"
         page.should have_content("You are not authorized to access this page.")
       end
@@ -74,7 +82,7 @@ describe "Items" do
     describe "delete" do
 
       it "should allow to delete item" do
-        my_item = create(:item,url: 'http://hello', board: @board)
+        my_item = create(:item, url: 'http://hello', board: @board)
         click_link 'Boards'
         click_link "items_board_#{@board.id}"
         click_link "delete_item_#{my_item.id}"
@@ -110,7 +118,7 @@ describe "Items" do
     describe "update" do
 
       it "should allow to update other user item" do
-        other_user_item = create(:item,url: 'http://otheruser', board: @board)
+        other_user_item = create(:item, url: 'http://otheruser', board: @board)
         click_link 'Boards'
         click_link "items_board_#{@board.id}"
         click_link "edit_item_#{other_user_item.id}"
@@ -124,7 +132,7 @@ describe "Items" do
     describe "delete" do
 
       it "should allow to delete other user item" do
-        other_user_item = create(:item,url: 'http://hello', board: @board)
+        other_user_item = create(:item, url: 'http://hello', board: @board)
         click_link 'Boards'
         click_link "items_board_#{@board.id}"
         click_link "delete_item_#{other_user_item.id}"
