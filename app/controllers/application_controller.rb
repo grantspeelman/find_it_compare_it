@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   rescue_from CanCan::AccessDenied do |exception|
-      redirect_to root_url, :alert => exception.message
+    redirect_to root_url, :alert => exception.message
   end
 
   protected
@@ -33,7 +33,11 @@ class ApplicationController < ActionController::Base
     if request.xhr?
       render(:update) { |page| page.redirect_to(root_path) }
     else
-      redirect_to(root_path)
+      if params[:iframe]
+        redirect_to('/iframe/login')
+      else
+        redirect_to('/login')
+      end
     end
   end
 

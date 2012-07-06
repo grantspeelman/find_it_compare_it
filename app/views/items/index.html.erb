@@ -1,30 +1,31 @@
 <%= page_header("#{@board.try(:name)} Listing items") %>
 
-<%= side_nav_link_to 'Add Item', action: :new if can? :create, Item  %>
+<%= side_nav_link_to 'Add Item', action: :new if can? :create, Item %>
 
 
 <div class="span10">
 
-  <a href='javascript:void((function()%7Bvar%20e=document.createElement(&apos;script&apos;);e.setAttribute(&apos;type&apos;,&apos;text/javascript&apos;);e.setAttribute(&apos;charset&apos;,&apos;UTF-8&apos;);e.setAttribute(&apos;src&apos;,&apos;http://<%= request.host_with_port %>/assets/find_it.js?r=&apos;+Math.random()*99999999);document.body.appendChild(e)%7D)());'>Find it</a>
+  <a href='javascript:void((function()%7Bvar%20e=document.createElement(&apos;script&apos;);e.setAttribute(&apos;type&apos;,&apos;text/javascript&apos;);e.setAttribute(&apos;charset&apos;,&apos;UTF-8&apos;);e.setAttribute(&apos;src&apos;,&apos;http://<%= request.host_with_port %><%= asset_path('find_it.js') %>?r=&apos;+Math.random()*99999999);document.body.appendChild(e)%7D)());'>Find
+    it</a>
 
   <table class="table table-stripped">
     <tr>
-        <th>Url</th>
-        <th>Notes</th>
-        <th></th>
+      <th>Url</th>
+      <th>Notes</th>
+      <th></th>
       <th></th>
       <th></th>
     </tr>
 
-  <% @items.each do |item| %>
-    <tr>
-        <td><%= item.url %></td>
-        <td><%= truncate(item.notes) %></td>
-        <td><%= link_to 'Show', {action: :show, id: item}, id: dom_id(item, :show), class: 'btn btn-mini' %></td>
-      <td><%= link_to 'Edit', {action: :edit, id: item}, id: dom_id(item, :edit), class: 'btn btn-mini btn-warning' if can? :update, item %></td>
-      <td><%= link_to 'Delete', {action: :destroy, id: item}, data: {confirm: 'Are you sure?'}, method: :delete, id: dom_id(item, :delete), class: 'btn btn-mini btn-danger' if can? :destroy, item %></td>
-    </tr>
-  <% end %>
+    <% @items.each do |item| %>
+        <tr>
+          <td><%= item.url %></td>
+          <td><%= truncate(item.notes) %></td>
+          <td><%= link_to 'Show', {action: :show, id: item}, id: dom_id(item, :show), class: 'btn btn-mini' %></td>
+          <td><%= link_to 'Edit', {action: :edit, id: item}, id: dom_id(item, :edit), class: 'btn btn-mini btn-warning' if can? :update, item %></td>
+          <td><%= link_to 'Delete', {action: :destroy, id: item}, data: {confirm: 'Are you sure?'}, method: :delete, id: dom_id(item, :delete), class: 'btn btn-mini btn-danger' if can? :destroy, item %></td>
+        </tr>
+    <% end %>
   </table>
   <%= paginate @items %>
 </div>

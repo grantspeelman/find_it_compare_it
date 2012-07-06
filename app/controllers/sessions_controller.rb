@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
 
+  def new
+    render layout: params[:iframe] ? 'iframe' : true
+  end
+
   def create
     auth = {:provider => request.env['omniauth.auth']['provider'].to_s,
             :uid => request.env['omniauth.auth']['uid'].to_s,
@@ -13,7 +17,7 @@ class SessionsController < ApplicationController
     self.current_user = @auth.user
 
     flash[:notice] = "Welcome, #{current_user.name}."
-    redirect_to(root_path)
+    redirect_back_or_default(root_path)
   end
 
   def failure

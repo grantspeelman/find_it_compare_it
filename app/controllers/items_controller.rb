@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
 #    @item = Item.new
     @item.url = params[:url] unless params[:url].blank?
     respond_to do |format|
-      format.html { render layout: params[:iframe] ? 'iframe': true }# new.html.erb
+      format.html { render layout: params[:iframe] ? 'iframe' : true } # new.html.erb
       format.json { render json: @item }
     end
   end
@@ -52,14 +52,14 @@ class ItemsController < ApplicationController
         format.html do
           if params[:iframe]
             flash.now[:notice] = 'Item was successfully created. You may close the popup now.'
-            format.html { render layout: 'iframe' }
+            render layout: 'iframe'
           else
             redirect_to({action: :show, id: @item}, notice: 'Item was successfully created.')
           end
         end
         format.json { render json: @item, status: :created, location: @item }
       else
-        format.html { render action: "new", layout: params[:iframe] ? 'iframe': true  }
+        format.html { render action: "new", layout: params[:iframe] ? 'iframe' : true }
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
@@ -88,7 +88,7 @@ class ItemsController < ApplicationController
     @item.destroy
 
     respond_to do |format|
-      format.html { redirect_to({action: :index}, notice: 'Item was successfully deleted.')  }
+      format.html { redirect_to({action: :index}, notice: 'Item was successfully deleted.') }
       format.json { head :ok }
     end
   end
