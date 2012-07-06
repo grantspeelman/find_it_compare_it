@@ -5,7 +5,7 @@ FindItCompareIt::Application.configure do
   config.cache_classes = true
 
   # Full error reports are disabled and caching is turned on
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
@@ -43,10 +43,10 @@ FindItCompareIt::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  # config.assets.precompile += %w( search.js )
+  config.assets.precompile += %w( find_it.js jquery-ui-1.8.21.custom.css )
 
   # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
+  # config.action_mailer.raise_delivery__iterrors = false
 
   # Enable threaded mode
   # config.threadsafe!
@@ -58,7 +58,7 @@ FindItCompareIt::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.action_mailer.default_url_options = { :host => 'fici.grantspeelman.co.za' }
+  config.action_mailer.default_url_options = {:host => 'fici.herokuapp.com'}
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
   config.action_mailer.delivery_method = :smtp
