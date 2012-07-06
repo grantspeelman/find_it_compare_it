@@ -5,4 +5,4 @@ test:
   uri: postgres://localhost/fici_test
 
 production:
-   uri: <= ENV['DATABASE_URL'] %>
+   uri: <%= ENV['DATABASE_URL'] || 'postgres://localhost/fici_development' %>
