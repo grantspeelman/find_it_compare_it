@@ -18,11 +18,11 @@
               '/auth/google',
               :title => 'Login with Google') %>
 </div>
-<% if Rails.env.development? %>
-  <div class="span5">
-    <label>Developer :</label>
-    <%= link_to(image_tag("yahoo_32.png"),
-                '/auth/developer',
-                :title => 'Login with Developer') %>
-  </div>
-<% end %>
+
+<div class="span5">
+  <label>Test :</label>
+  <%= link_to('Login',
+              '/auth/developer',
+              :title => 'Login with Developer') %>
+</div>
+

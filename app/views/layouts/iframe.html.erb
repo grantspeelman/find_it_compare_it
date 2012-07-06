@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Find It Compare Itr</title>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+<div id="main-container" class="container">
+
+  <%- flash.each do |name, msg| -%>
+      <% name = 'error' if name.to_s == 'alert' %>
+      <% name = 'info' if name.to_s == 'notice' %>
+      <div class="alert alert-<%= name %>">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <%= msg.to_s %>
+      </div>
+  <%- end -%>
+
+  <div class="row">
+
+    <%= yield %>
+
+  </div>
+
+</div>
+<!-- /container -->
+
+
+</body>
+</html>

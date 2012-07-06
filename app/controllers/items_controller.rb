@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_filter :login_required
   load_and_authorize_resource :board
-  load_and_authorize_resource :through => :board
+  load_and_authorize_resource :through => :board, :shallow => true
   # GET /items
   # GET /items.json
   def index
@@ -30,9 +30,9 @@ class ItemsController < ApplicationController
   # GET /items/new.json
   def new
 #    @item = Item.new
-
+    @item.url = params[:url] unless params[:url].blank?
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render layout: params[:iframe] ? 'iframe': true }# new.html.erb
       format.json { render json: @item }
     end
   end
@@ -49,10 +49,17 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to({action: :show, id: @item}, notice: 'Item was successfully created.') }
+        format.html do
+          if params[:iframe]
+            flash.now[:notice] = 'Item was successfully created. You may close the popup now.'
+            format.html { render layout: 'iframe' }
+          else
+            redirect_to({action: :show, id: @item}, notice: 'Item was successfully created.')
+          end
+        end
         format.json { render json: @item, status: :created, location: @item }
       else
-        format.html { render action: "new" }
+        format.html { render action: "new", layout: params[:iframe] ? 'iframe': true  }
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end

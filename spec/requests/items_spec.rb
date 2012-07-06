@@ -44,6 +44,9 @@ describe "Items" do
         fill_in 'Url', with: "http://dev"
         click_on 'Create'
         page.should have_content("Item was successfully created.")
+        click_link 'Boards'
+        click_link "items_board_#{@board.id}"
+        page.should have_content("http://dev")
       end
 
     end

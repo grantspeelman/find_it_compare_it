@@ -41,6 +41,8 @@ describe "Boards" do
         fill_in 'Name', with: "My new Board"
         click_on 'Create'
         page.should have_content("Board was successfully created.")
+        click_link 'Boards'
+        page.should have_content("My new Board")
       end
 
     end

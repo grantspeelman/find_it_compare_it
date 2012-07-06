@@ -5,6 +5,7 @@ FindItCompareIt::Application.routes.draw do
   end
 
   resources :users
+  resources :items, :path => "iframe/items", :only => [:new,:create,:index], :defaults => { :iframe => true }
 
   #resources :cards do
   #  collection do

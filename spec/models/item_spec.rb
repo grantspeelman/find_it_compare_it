@@ -22,6 +22,12 @@ describe Item do
       item.errors.on(:url).should be_nil
     end
 
+    it "must allow more that 50 characters" do
+      board = Item.new(url: "a" * 60)
+      board.valid?
+      board.errors.on(:url).should be_nil
+    end
+
   end
 
 end
