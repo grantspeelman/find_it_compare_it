@@ -74,6 +74,7 @@ describe "Items" do
       it "wont allow to update other user item" do
         other_user_item = create(:item, url: 'http://otheruser', board: create(:board))
         visit "/boards/#{other_user_item.board.id}/items/#{other_user_item.id}/edit"
+        save_and_open_page
         page.should have_content("You are not authorized to access this page.")
       end
 

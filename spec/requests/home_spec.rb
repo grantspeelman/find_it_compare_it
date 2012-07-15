@@ -7,6 +7,11 @@ describe 'Home' do
   end
 
 
+  it "should show home page" do
+    visit '/'
+    page.should_not have_link("New Board")
+  end
+
   describe "first login" do
 
     it "should see home page" do
@@ -23,11 +28,12 @@ describe 'Home' do
       login_with_oauth(@auth)
     end
 
+
     it "should allow you to create boards from home page" do
       visit '/'
       page.should have_link("New Board")
       click_link 'New Board'
-      current_path.should == '/boards/new'
+
     end
 
   end

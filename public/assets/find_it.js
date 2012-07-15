@@ -5,7 +5,7 @@
 // the compiled file.
 //
 function CIFI_run() {
-    $("#demo-description").length == 0 && $("body").append('<div id="demo-description" title="Find it Compare It">Replace me</div>'), $("#demo-description").empty(), $("#demo-description").append("<iframe height='400' width='600'  src='http://fici.herokuapp.com/iframe/items/new?url=" + encodeURIComponent($(location).attr("href")) + "' ></iframe>"), $("#demo-description").dialog({width:660, height:460, modal:!0})
+    $("#demo-description").length == 0 && $("body").append('<div id="demo-description" title="Find it Compare It">Replace me</div>'), $("#demo-description").empty(), $("#demo-description").append("<iframe height='100%' width='100%' scrolling='no' src='http://fici.herokuapp.com/iframe/items/new?url=" + encodeURIComponent($(location).attr("href")) + "' ></iframe>"), $("#demo-description").dialog({width:660, height:460, modal:!0})
 }
 function CIFI_jquery_ui_wait() {
     typeof jQuery.ui == "undefined" ? window.setTimeout(CIFI_jquery_ui_wait, 100) : CIFI_run()
@@ -16,7 +16,7 @@ function CIFI_jquery_wait() {
             var e = document.createElement("script");
             e.type = "text/javascript", e.src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js", document.getElementsByTagName("head")[0].appendChild(e);
             var t = document.createElement("link");
-            t.rel = "stylesheet", t.href = "http://localhost:3000/assets/jquery-ui-1.8.21.custom.css", document.getElementsByTagName("head")[0].appendChild(t)
+            t.rel = "stylesheet", t.href = "https://fici.herokuapp.com/assets/jquery-ui-1.8.21.custom.css", document.getElementsByTagName("head")[0].appendChild(t)
         }
         CIFI_jquery_ui_wait()
     }

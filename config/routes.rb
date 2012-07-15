@@ -20,7 +20,7 @@ FindItCompareIt::Application.routes.draw do
   match '/login', :to => 'sessions#new'
   match '/logout', :to => 'sessions#destroy'
 
-  match '/me', :to => 'home#me'
+  match '/dashboard', :to => 'home#dashboard'
 
   root :to => "home#index"
 

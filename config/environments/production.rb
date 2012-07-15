@@ -59,6 +59,7 @@ FindItCompareIt::Application.configure do
   config.active_support.deprecation = :notify
 
   config.action_mailer.default_url_options = {:host => 'fici.herokuapp.com'}
+  config.action_controller.asset_host = "https://fici.herokuapp.com"
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
   config.action_mailer.delivery_method = :smtp

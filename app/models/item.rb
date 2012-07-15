@@ -3,10 +3,12 @@ class Item
 
   property 'id', Serial
 
-  property 'url', Text, index: true, unique: :board_id, required: true
+  property 'url', Text, required: true
   property 'notes', Text
 
   timestamps :at
+
+  validates_uniqueness_of :url, :scope => :board_id
 
   belongs_to :board
 end
