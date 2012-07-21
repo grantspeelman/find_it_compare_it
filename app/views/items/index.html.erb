@@ -5,10 +5,6 @@
 
 <div class="span10">
 
-  <a href='javascript:void((function()%7Bvar%20e=document.createElement(&apos;script&apos;);e.setAttribute(&apos;type&apos;,&apos;text/javascript&apos;);e.setAttribute(&apos;charset&apos;,&apos;UTF-8&apos;);e.setAttribute(&apos;src&apos;,&apos;http://<%= request.host_with_port %><%= asset_path('find_it.js') %>?r=&apos;+Math.random()*99999999);document.body.appendChild(e)%7D)());'>Find
-    it</a>
-
-
   <% @items.in_groups_of(3, false).each do |items| %>
       <div class="row">
         <% items.each do |item| %>
