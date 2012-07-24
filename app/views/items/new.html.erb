@@ -1,7 +1,8 @@
 <%= page_header("#{@board.try(:name)} New item") %>
 
+<%= render :partial => 'action_links' %>
+
 <div class="span10">
   <%= render 'form' %>
 </div>
 
-<%= side_nav_link_to 'List Items', action: :index %>

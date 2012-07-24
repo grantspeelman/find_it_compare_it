@@ -5,62 +5,75 @@
 // the compiled file.
 //
 
-if (typeof jQuery == 'undefined' || jQuery.fn.jquery <= '1.4.0') {
-    // Load jQuery is loaded
-    var script = document.createElement('script');
-    script.type = "text/javascript";
-    script.src = "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js";
-    document.getElementsByTagName('head')[0].appendChild(script);
-}
+if (window.location.href.indexOf("<%= Rails.configuration.action_mailer.default_url_options[:host] %>") > -1) {
+    alert("Drag this link onto your taskbar and use it on other sites");
+} else {
 
-function CIFI_run() {
-    if ($('#demo-description').length == 0) {
-        $('body').append('<div id="demo-description" title="Find it Compare It">Replace me</div>');
-    }
-
-    $('#demo-description').empty();
-    $('#demo-description').append("<iframe height='100%' width='100%' scrolling='no' src='<%= Rails.application.routes.url_helpers.new_item_url(host: Rails.configuration.action_mailer.default_url_options[:host]) %>?url=" + encodeURIComponent($(location).attr('href')) + "' ></iframe>");
-
-
-    $("#demo-description").dialog({
-        width:660,
-        height:460,
-        modal:true
-    });
-
-}
-
-function CIFI_jquery_ui_wait() {
-    if (typeof jQuery.ui == 'undefined') {
-        window.setTimeout(CIFI_jquery_ui_wait, 100);
-    }
-    else {
-        CIFI_run();
-    }
-}
-
-function CIFI_jquery_wait() {
     if (typeof jQuery == 'undefined' || jQuery.fn.jquery <= '1.4.0') {
-        window.setTimeout(CIFI_jquery_wait, 100);
+        // Load jQuery is loaded
+        var script = document.createElement('script');
+        script.type = "text/javascript";
+        script.src = "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js";
+        document.getElementsByTagName('head')[0].appendChild(script);
     }
-    else {
-        if (typeof jQuery.ui == 'undefined') {
-            // Load jQuery ui is loaded
-            var script = document.createElement('script');
-            script.type = "text/javascript";
-            script.src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js";
-            document.getElementsByTagName('head')[0].appendChild(script);
-            // Load jQuery ui css
-            var newSS = document.createElement('link');
-            newSS.rel = 'stylesheet';
-            newSS.href = "<%= stylesheet_path("jquery-ui-1.8.21.custom.css") %>";
-            document.getElementsByTagName("head")[0].appendChild(newSS);
-        }
-        CIFI_jquery_ui_wait();
-    }
-}
 
-CIFI_jquery_wait();
+    function load_frame(image_url) {
+        $('#cherry-pick-div-for-selection').empty();
+        $('#cherry-pick-div-for-selection').append("<iframe height='100%' width='100%' scrolling='no' src='<%= Rails.application.routes.url_helpers.new_item_url(host: Rails.configuration.action_mailer.default_url_options[:host]) %>?url=" + encodeURIComponent($(location).attr('href')) + "&image_url=" + encodeURIComponent(image_url) + "' ></iframe>");
+    }
+
+    function CIFI_run() {
+        if ($('#cherry-pick-div-for-selection').length == 0) {
+            $('body').append('<div id="cherry-pick-div-for-selection"></div>');
+        }
+
+        $('#cherry-pick-div-for-selection').empty();
+
+        $("#cherry-pick-div-for-selection").dialog({
+            width:660,
+            height:460,
+            modal:true
+        });
+
+        $('#cherry-pick-div-for-selection').append($("<a onclick='load_frame(\"\");'>No image</a>"))
+        $('img').each(function (index) {
+            $('#cherry-pick-div-for-selection').append($("<a onclick='load_frame(\"" + $(this).attr('src') + "\");'><img height='100' width='100' src='" + $(this).attr('src') + "'/></a>"))
+        });
+
+    }
+
+    function CIFI_jquery_ui_wait() {
+        if (typeof jQuery.ui == 'undefined') {
+            window.setTimeout(CIFI_jquery_ui_wait, 100);
+        }
+        else {
+            CIFI_run();
+        }
+    }
+
+    function CIFI_jquery_wait() {
+        if (typeof jQuery == 'undefined' || jQuery.fn.jquery <= '1.4.0') {
+            window.setTimeout(CIFI_jquery_wait, 100);
+        }
+        else {
+            if (typeof jQuery.ui == 'undefined') {
+                // Load jQuery ui is loaded
+                var script = document.createElement('script');
+                script.type = "text/javascript";
+                script.src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js";
+                document.getElementsByTagName('head')[0].appendChild(script);
+                // Load jQuery ui css
+                var newSS = document.createElement('link');
+                newSS.rel = 'stylesheet';
+                newSS.href = "<%= stylesheet_path("jquery-ui-1.8.21.custom.css") %>";
+                document.getElementsByTagName("head")[0].appendChild(newSS);
+            }
+            CIFI_jquery_ui_wait();
+        }
+    }
+
+    CIFI_jquery_wait();
+}
 
 
 

@@ -4,6 +4,8 @@ class Item
   property 'id', Serial
 
   property 'url', Text, required: true
+  property 'image_url', Text
+
   property 'notes', Text
 
   timestamps :at

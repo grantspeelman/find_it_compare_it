@@ -1,7 +1,6 @@
 <%= page_header("#{@board.try(:name)} Listing items") %>
 
-<%= side_nav_link_to 'Add Item', action: :new if can? :create, Item %>
-
+<%= render :partial => 'action_links' %>
 
 <div class="span10">
 
