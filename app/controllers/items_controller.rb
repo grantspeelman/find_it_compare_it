@@ -31,6 +31,7 @@ class ItemsController < ApplicationController
   def new
 #    @item = Item.new
     @item.url = params[:url] unless params[:url].blank?
+    @item.image_url = params[:image_url] unless params[:image_url].blank?
     respond_to do |format|
       format.html { render layout: params[:iframe] ? 'iframe' : true } # new.html.erb
       format.json { render json: @item }

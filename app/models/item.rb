@@ -10,7 +10,7 @@ class Item
 
   timestamps :at
 
-  validates_uniqueness_of :url, :scope => :board_id
+  # validates_uniqueness_of :url, :scope => :board_id
 
   belongs_to :board
 end

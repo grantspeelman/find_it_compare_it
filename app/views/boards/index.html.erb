@@ -1,27 +1,34 @@
 <%= page_header("Listing boards") %>
 
-<%= side_nav_link_to 'Add Board', new_board_path if can? :create, Board %>
+<%= render :partial => 'action_links' %>
 
 <div class="span10">
-  <table class="table table-striped">
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th></th>
-    </tr>
-    <% @boards.each do |board| %>
-      <tr>
-        <td><%= board.name %></td>
-        <td><%= truncate(board.description) %></td>
-        <td>
-          <%= link_to 'Items', board_items_path(board), id: dom_id(board, :items), class: 'btn btn-mini' %>
-          <%= link_to 'Show', board, id: dom_id(board, :show), class: 'btn btn-mini' %>
-          <%= link_to 'Edit', {action: :edit, id: board}, id: dom_id(board, :edit), class: 'btn btn-mini btn-warning' if can? :update, board %>
-          <%= link_to 'Delete', {action: :destroy, id: board}, data: {confirm: 'Are you sure?'}, method: :delete, id: dom_id(board, :delete), class: 'btn btn-mini btn-danger' if can? :destroy, board %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
+
+  <% @boards.in_groups_of(3, false).each do |boards| %>
+      <ul class="thumbnails">
+        <% boards.each do |board| %>
+            <li class="span3">
+              <div class="thumbnail">
+                <% if board.items.any? %>
+                    <%= link_to image_tag(board.items.first.image_url, :width => "190"), board_items_path(board) %>
+                <% end %>
+                <div class="caption">
+                  <h2><%= link_to board.name, board_items_path(board), id: dom_id(board, :items) %></h2>
+
+                  <p><%= truncate(board.description) %></p>
+
+                  <div class="btn-group">
+                    <%= link_to 'Show', board, id: dom_id(board, :show), class: 'btn btn-mini' %>
+                    <%= link_to 'New Item', new_board_item_path(board), id: dom_id(board, :new_item), class: 'btn btn-mini btn-warning' %>
+                    <%= link_to 'Edit', {action: :edit, id: board}, id: dom_id(board, :edit), class: 'btn btn-mini btn-warning' if can? :update, board %>
+                    <%= link_to 'Delete', {action: :destroy, id: board}, data: {confirm: 'Are you sure?'}, method: :delete, id: dom_id(board, :delete), class: 'btn btn-mini btn-danger' if can? :destroy, board %>
+                  </div>
+                </div>
+              </div>
+            </li>
+        <% end %>
+      </ul>
+  <% end %>
   <%= paginate @boards %>
 </div>
 

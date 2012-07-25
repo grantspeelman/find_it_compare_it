@@ -5,24 +5,29 @@
 <div class="span10">
 
   <% @items.in_groups_of(3, false).each do |items| %>
-      <div class="row">
+      <ul class="thumbnails">
         <% items.each do |item| %>
-            <div class="span3 thumbnail">
-              <span title="<%= item.url %>"><%= truncate(item.url) %></span>
+            <li class="span3">
+              <div class="thumbnail">
+                <%= image_tag(item.image_url, :width => "190") %>
+                <div class="caption">
+                  <%= link_to truncate(item.url),item.url, popup: true  %>
 
-              <p><%= truncate(item.notes) %></p>
+                  <p><%= truncate(item.notes) %></p>
 
-              <div class="btn-group">
-                <%= link_to 'Show', {action: :show, id: item}, id: dom_id(item, :show),
-                            class: 'btn btn-mini' %>
-                <%= link_to 'Edit', {action: :edit, id: item}, id: dom_id(item, :edit),
-                            class: 'btn btn-mini btn-warning' if can? :update, item %>
-                <%= link_to 'Delete', {action: :destroy, id: item}, data: {confirm: 'Are you sure?'},
-                            method: :delete, id: dom_id(item, :delete), class: 'btn btn-mini btn-danger' if can? :destroy, item %>
+                  <div class="btn-group">
+                    <%= link_to 'Show', {action: :show, id: item}, id: dom_id(item, :show),
+                                class: 'btn btn-mini' %>
+                    <%= link_to 'Edit', {action: :edit, id: item}, id: dom_id(item, :edit),
+                                class: 'btn btn-mini btn-warning' if can? :update, item %>
+                    <%= link_to 'Delete', {action: :destroy, id: item}, data: {confirm: 'Are you sure?'},
+                                method: :delete, id: dom_id(item, :delete), class: 'btn btn-mini btn-danger' if can? :destroy, item %>
+                  </div>
+                </div>
               </div>
-            </div>
+            </li>
         <% end %>
-      </div>
+      </ul>
   <% end %>
 
   <%= paginate @items %>

@@ -1,7 +1,7 @@
 <%= page_header("Show board") %>
 
-<%= side_nav_link_to 'Edit Board', action: :edit, id: @board if can? :update, @board %>
-<%= side_nav_link_to 'List Boards', action: :index %>
+<%= render :partial => 'action_links' %>
+
 
 <div class="span10">
     <p>
@@ -12,6 +12,6 @@
     <b>Description:</b>
     <%= @board.description %>
   </p>
-  </div>
+</div>
 
 

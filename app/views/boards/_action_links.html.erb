@@ -1,0 +1,9 @@
+<%= side_nav_link_to 'Add Board', action: 'new' if !['new', 'create'].include?(params[:action]) && can?(:create, Board) %>
+<%= side_nav_link_to 'List Boards', action: 'index' unless ['index'].include?(params[:action]) %>
+<% if @board %>
+    <% unless @board.new? %>
+        <%= side_nav_link_to 'Show Board', action: 'show', id: @board if !['show'].include?(params[:action]) && can?(:read, @board) %>
+        <%= side_nav_link_to 'Edit Board', action: 'edit', id: @board if !['edit', 'update'].include?(params[:action]) && can?(:edit, @board) %>
+        <%= side_nav_link_to 'Add Item', new_board_item_path(@board) if can?(:create, Item) %>
+    <% end %>
+<% end %>
