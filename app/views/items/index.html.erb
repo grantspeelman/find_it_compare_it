@@ -11,10 +11,8 @@
               <div class="thumbnail">
                 <%= image_tag(item.image_url, :width => "190") %>
                 <div class="caption">
-                  <%= link_to truncate(item.url),item.url, popup: true  %>
-
-                  <p><%= truncate(item.notes) %></p>
-
+                  <h3 title="<%= item.title %>"><%= truncate(item.title,:length => 15) %></h3>
+                  <%= link_to truncate(item.url,:length => 23),item.url, title: item.url  %>
                   <div class="btn-group">
                     <%= link_to 'Show', {action: :show, id: item}, id: dom_id(item, :show),
                                 class: 'btn btn-mini' %>

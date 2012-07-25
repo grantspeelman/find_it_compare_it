@@ -3,6 +3,7 @@ class Item
 
   property 'id', Serial
 
+  property 'title', String
   property 'url', Text, required: true
   property 'image_url', Text
 

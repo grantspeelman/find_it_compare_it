@@ -3,6 +3,7 @@
 
   <div class="form-inputs">
     <%= f.input :board_id, collection: current_user.boards, prompt: false unless @board %>
+    <%= f.input :title %>
     <%= f.input :url %>
     <%= f.input :image_url %>
     <%= f.input :notes, as: :text, input_html: { :rows => 8 } %>

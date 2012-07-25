@@ -19,7 +19,7 @@ if (window.location.href.indexOf("<%= Rails.configuration.action_mailer.default_
 
     function load_frame(image_url) {
         $('#cherry-pick-div-for-selection').empty();
-        $('#cherry-pick-div-for-selection').append("<iframe height='97%' width='97%' src='<%= Rails.application.routes.url_helpers.new_item_url(host: Rails.configuration.action_mailer.default_url_options[:host]) %>?url=" + encodeURIComponent($(location).attr('href')) + "&image_url=" + encodeURIComponent(image_url) + "' ></iframe>");
+        $('#cherry-pick-div-for-selection').append("<iframe height='97%' width='97%' src='<%= Rails.application.routes.url_helpers.new_item_url(host: Rails.configuration.action_mailer.default_url_options[:host]) %>?item[url]=" + encodeURIComponent($(location).attr('href')) + "&item[image_url]=" + encodeURIComponent(image_url) + "&item[title]=" + encodeURIComponent(document.title.substring(0, 15)) +"' ></iframe>");
     }
 
     function CIFI_run() {
