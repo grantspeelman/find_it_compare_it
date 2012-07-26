@@ -50,7 +50,7 @@ describe "Items" do
       end
 
       it "should allow to create via iframe" do
-        visit '/iframe/items/new'
+        visit '/iframe/items/new?item[title]=MyItem'
         select @board.name, :from => 'Board'
         fill_in 'Url', with: "http://dev"
         click_on 'Create'

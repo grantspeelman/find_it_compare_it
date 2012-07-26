@@ -6,6 +6,8 @@ class User
   property 'name',      String, required: true
   property 'role',      String, required: true, default: 'normal_user'
   property 'time_zone', String
+  property 'created_at', DateTime, index: true
+  property 'updated_at', DateTime, index: true
 
   has n, :authorizations
   has n, :boards

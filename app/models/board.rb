@@ -4,12 +4,16 @@ class Board
 
   property 'id', Serial
 
-  property 'name', String, index: true, unique: true, required: true
+  property 'name', String, index: true, unique: :user_id, required: true
   property 'description', Text
-  timestamps :at
+  property 'user_id', Integer, :index => true
+  property 'test_features_count', Integer, :default => 0
+  property 'created_at', DateTime, index: true
+  property 'updated_at', DateTime, index: true
 
   belongs_to :user
   has n, :items
+  has n, :test_features, 'BoardTestFeature'
 
-  attr_protected :user_id
+  attr_protected :user_id, :test_features_count
 end

@@ -4,8 +4,8 @@ class Item
   property 'id', Serial
 
   property 'title', String
-  property 'url', Text, required: true
-  property 'image_url', Text
+  property 'url', Text, required: true, lazy: false
+  property 'image_url', Text, lazy: false
 
   property 'notes', Text
 

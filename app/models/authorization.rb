@@ -1,9 +1,12 @@
 class Authorization
   include DataMapper::Resource
 
-  property :id,        Serial
-  property :uid,       String,  :required => true, :unique => :provider, :index => true
-  property :provider,  String,  :required => true, :index => true
+  property 'id',        Serial
+  property 'uid',       String,  :required => true, :unique => :provider, :index => true
+  property 'provider',  String,  :required => true, :index => true
+  property 'user_id',  Integer, :index => true
+  property 'created_at', DateTime, index: true
+  property 'updated_at', DateTime, index: true
 
   belongs_to :user
 
