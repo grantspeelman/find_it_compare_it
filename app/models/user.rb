@@ -11,6 +11,7 @@ class User
 
   has n, :authorizations
   has n, :boards
+  has n, :test_results, model: 'ItemTestResult'
 
   attr_protected :role
 

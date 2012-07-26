@@ -2,11 +2,11 @@
 
 FactoryGirl.define do
 
-  factory :item do
-    sequence :url do |n|
-      "http://website#{n}.com"
-    end
-    board
+  factory :item_test_result do
+    item
+    board_test_feature
+    result false
+    user
   end
 
 end

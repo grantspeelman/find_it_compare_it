@@ -14,6 +14,7 @@ class BoardTestFeature
   validates_numericality_of 'score', :only_integer => true
 
   belongs_to :board
+  has n, :test_results, model: 'ItemTestResult'
 
   attr_protected :board_id
 
