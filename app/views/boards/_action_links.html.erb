@@ -4,6 +4,7 @@
     <% unless @board.new? %>
         <%= side_nav_link_to 'Show Board', action: 'show', id: @board if !['show'].include?(params[:action]) && can?(:read, @board) %>
         <%= side_nav_link_to 'Edit Board', action: 'edit', id: @board if !['edit', 'update'].include?(params[:action]) && can?(:edit, @board) %>
-        <%= side_nav_link_to 'Add Item', new_board_item_path(@board) if can?(:create, Item) %>
+        <%= side_nav_link_to 'Add Item', new_board_item_path(@board) if can?(:create, @board.items.new) %>
+        <%= side_nav_link_to 'List Items', board_items_path(@board) if can?(:read, @board.items.new) %>
     <% end %>
 <% end %>
