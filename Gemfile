@@ -22,7 +22,6 @@ gem 'thin'
 
 group :assets do
   gem 'uglifier'
-  gem 'less-rails-bootstrap'
 end
 
 group :development, :test do
