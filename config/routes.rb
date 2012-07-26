@@ -2,6 +2,7 @@ FindItCompareIt::Application.routes.draw do
 
   resources :boards do
     resources :items
+    resources :board_test_features, :path => 'test_features'
   end
 
   resources :users

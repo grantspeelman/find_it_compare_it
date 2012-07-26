@@ -7,6 +7,7 @@
     <% end %>
 <% end %>
 <% if @board %>
+    <%= side_nav_link_to 'Add Test Feature', new_board_board_test_feature_path(@board) if can?(:create, BoardTestFeature.new(board: @board)) %>
     <%= side_nav_link_to 'Show Board', controller: 'boards', action: :edit, id: @board if can?(:read, @board) %>
     <%= side_nav_link_to 'Edit Board', controller: 'boards', action: :edit, id: @board if can?(:edit, @board) %>
 <% end %>
