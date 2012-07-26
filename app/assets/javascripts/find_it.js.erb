@@ -18,26 +18,26 @@ if (window.location.href.indexOf("<%= Rails.configuration.action_mailer.default_
     }
 
     function load_frame(image_url) {
-        $('#cherry-pick-div-for-selection').empty();
-        $('#cherry-pick-div-for-selection').append("<iframe height='97%' width='97%' src='<%= Rails.application.routes.url_helpers.new_item_url(host: Rails.configuration.action_mailer.default_url_options[:host]) %>?item[url]=" + encodeURIComponent($(location).attr('href')) + "&item[image_url]=" + encodeURIComponent(image_url) + "&item[title]=" + encodeURIComponent(document.title.substring(0, 15)) +"' ></iframe>");
+        $('#cherry-sweet-pick-div-for-selection').empty();
+        $('#cherry-sweet-pick-div-for-selection').append("<iframe height='97%' width='97%' src='<%= Rails.application.routes.url_helpers.new_item_url(host: Rails.configuration.action_mailer.default_url_options[:host]) %>?item[url]=" + encodeURIComponent($(location).attr('href')) + "&item[image_url]=" + encodeURIComponent(image_url) + "&item[title]=" + encodeURIComponent(document.title.substring(0, 15)) +"' ></iframe>");
     }
 
     function CIFI_run() {
-        if ($('#cherry-pick-div-for-selection').length == 0) {
-            $('body').append('<div id="cherry-pick-div-for-selection"></div>');
+        if ($('#cherry-sweet-pick-div-for-selection').length == 0) {
+            $('body').append('<div id="cherry-sweet-pick-div-for-selection"></div>');
         }
 
-        $('#cherry-pick-div-for-selection').empty();
+        $('#cherry-sweet-pick-div-for-selection').empty();
 
-        $("#cherry-pick-div-for-selection").dialog({
+        $("#cherry-sweet-pick-div-for-selection").dialog({
             width:660,
             height:460,
             modal:true
         });
 
-        $('#cherry-pick-div-for-selection').append($("<a onclick='load_frame(\"\");'>No image</a>"))
+        $('#cherry-sweet-pick-div-for-selection').append($("<a onclick='load_frame(\"\");'>No image</a>"))
         $('img').each(function (index) {
-            $('#cherry-pick-div-for-selection').append($("<a onclick='load_frame(\"" + $(this).attr('src') + "\");'><img height='100' width='100' src='" + $(this).attr('src') + "'/></a>"))
+            $('#cherry-sweet-pick-div-for-selection').append($("<a onclick='load_frame(\"" + $(this).attr('src') + "\");'><img height='100' width='100' src='" + $(this).attr('src') + "'/></a>"))
         });
 
     }
