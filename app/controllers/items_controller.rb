@@ -41,10 +41,14 @@ class ItemsController < ApplicationController
 #    @item = Item.get(params[:id])
   end
 
+  def new
+    @item.board.test_features.each do |test_feature|
+      @item.test_results.new(board_test_feature: test_feature, user: current_user)
+    end
+  end
   # POST /items
   # POST /items.json
   def create
-#    @item = Item.new(params[:item])
 
     respond_to do |format|
       if @item.save

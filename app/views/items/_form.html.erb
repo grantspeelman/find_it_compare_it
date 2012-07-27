@@ -1,15 +1,22 @@
 <%= simple_form_for([@board,@item]) do |f| %>
-  <%= f.error_notification %>
+    <%= f.semantic_errors %>
 
-  <div class="form-inputs">
     <%= f.input :board_id, collection: current_user.boards, prompt: false unless @board %>
-    <%= f.input :title %>
-    <%= f.input :url %>
-    <%= f.input :image_url %>
-    <%= f.input :notes, as: :text, input_html: { :rows => 8 } %>
-  </div>
+    <%= f.input :title, :required => false %>
+    <%= f.input :url, :required => false %>
+    <%= f.input :image_url, :required => false %>
+    <div class="form-inline">
+      <% @item.test_results.each do |test_result| %>
+          <%= f.simple_fields_for test_result, index: "", wrapper: false do |rf| %>
+              <%= rf.input :result, label: test_result.board_test_feature.name, as: :boolean, wrapper: false %>
+              <%= rf.input :board_test_feature_id, :as => :hidden %>
+              <%= rf.input :user_id, :as => :hidden %>
+              <%= rf.input :id, :as => :hidden unless test_result.new? %>
+          <% end %>
+      <% end %>
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
 <% end %>

@@ -5,7 +5,7 @@ class Item
   property 'id', Serial
 
   property 'title', String
-  property 'url', Text, required: true, lazy: false
+  property 'url', Text, lazy: false
   property 'image_url', Text, lazy: false
   property 'score', Integer, default: 0
 
