@@ -37,5 +37,3 @@ group :test do
   gem 'poltergeist'
 end
 
-gem 'therubyracer', '>= 0.9.8'
-

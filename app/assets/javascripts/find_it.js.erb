@@ -4,8 +4,8 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-
-if (window.location.href.indexOf("<%= Rails.configuration.action_mailer.default_url_options[:host] %>") > -1) {
+<% HOST_URL = "cherrypick.dev" unless defined?(HOST_URL) %>
+if (window.location.href.indexOf("<%= HOST_URL %>") > -1) {
     alert("Drag this link onto your taskbar and use it on other sites");
 } else {
 
@@ -19,7 +19,7 @@ if (window.location.href.indexOf("<%= Rails.configuration.action_mailer.default_
 
     function load_frame(image_url) {
         $('#cherry-sweet-pick-div-for-selection').empty();
-        $('#cherry-sweet-pick-div-for-selection').append("<iframe height='97%' width='97%' src='<%= Rails.application.routes.url_helpers.new_item_url(host: Rails.configuration.action_mailer.default_url_options[:host]) %>?item[url]=" + encodeURIComponent($(location).attr('href')) + "&item[image_url]=" + encodeURIComponent(image_url) + "&item[title]=" + encodeURIComponent(document.title.substring(0, 15)) +"' ></iframe>");
+        $('#cherry-sweet-pick-div-for-selection').append("<iframe height='97%' width='97%' src='https://<%= HOST_URL %>/iframe/items/new?item[url]=" + encodeURIComponent($(location).attr('href')) + "&item[image_url]=" + encodeURIComponent(image_url) + "&item[title]=" + encodeURIComponent(document.title.substring(0, 15)) +"' ></iframe>");
     }
 
     function CIFI_run() {
