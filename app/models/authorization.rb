@@ -5,6 +5,7 @@ class Authorization
   property 'uid',       String,  :required => true, :unique => :provider, :index => true
   property 'provider',  String,  :required => true, :index => true
   property 'user_id',  Integer, :index => true
+  property 'auth_hash', Object
   property 'created_at', DateTime, index: true
   property 'updated_at', DateTime, index: true
 
@@ -19,12 +20,12 @@ class Authorization
   end
 
   def self.create_from_hash(hash, user = nil)
-    user ||= User.create(:name => hash[:name])
+    user ||= User.create(:name => (hash[:name] || hash[:info][:name]))
     if User.count(:role => 'admin') == 0
       user.role = 'admin'
       user.save
     end
-    Authorization.create(:user => user, :uid => hash[:uid], :provider => hash[:provider])
+    Authorization.create(:user => user, :uid => hash[:uid], :provider => hash[:provider], :auth_hash => hash)
   end
 
   protected

@@ -13,7 +13,7 @@
   </p>
 </div>
 
-<% if @user == current_user %>
+<% if Rails.env.production? && @user == current_user %>
   <div class="span5">
     <h2>Authorized</h2>
 

@@ -39,9 +39,6 @@ FindItCompareIt::Application.configure do
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
 
-  # Enable serving of images, stylesheets, and JavaScripts from an asset server
-  # config.action_controller.asset_host = "http://assets.example.com"
-
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   config.assets.precompile += %w( find_it.js jquery-ui-1.8.21.custom.css )
 
@@ -59,6 +56,7 @@ FindItCompareIt::Application.configure do
   config.active_support.deprecation = :notify
 
   config.action_mailer.default_url_options = {:host => 'pyrushunt.herokuapp.com'}
+  # Enable serving of images, stylesheets, and JavaScripts from an asset server
   config.action_controller.asset_host = "https://pyrushunt.herokuapp.com"
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised

@@ -1,0 +1,18 @@
+<div class="span3">
+    <label>Twitter : </label>
+    <%= link_to(image_tag("twitter_32.png"),
+                Rails.env.development? ? '/auth/developer' : '/auth/twitter',
+                :title => 'Login with Twitter') %>
+</div>
+<div class="span3">
+<label>Facebook :</label>
+<%= link_to(image_tag("facebook_32.png"),
+            Rails.env.development? ? '/auth/developer' : '/auth/facebook',
+            :title => 'Login with Facebook') %>
+</div>
+<div class="span3">
+<label>Google :</label>
+<%= link_to(image_tag("google_32.png"),
+            Rails.env.development? ? '/auth/developer' : '/auth/google',
+            :title => 'Login with Google') %>
+</div>
