@@ -8,9 +8,10 @@ gem 'omniauth-google'
 gem 'oa-openid'
 
 gem 'dm-rails'
-if ENV['TEST_DATABASE_URL'].include?("mysql")
+database_type = ENV['TEST_DATABASE_URL'] || ENV['DATABASE_URL'] || "postgres"
+if database_type.include?("mysql")
   gem 'dm-postgres-mysql'
-elsif ENV['TEST_DATABASE_URL'].include?("sqlite")
+elsif database_type.include?("sqlite")
   gem 'dm-sqlite-adapter'
 else
   gem 'dm-postgres-adapter'
@@ -28,6 +29,7 @@ gem 'cancan'
 gem 'kaminari'
 gem 'heroku'
 gem 'thin'
+gem 'newrelic_rpm'
 
 group :assets do
   gem 'uglifier'
