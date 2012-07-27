@@ -8,7 +8,14 @@ gem 'omniauth-google'
 gem 'oa-openid'
 
 gem 'dm-rails'
-gem 'dm-postgres-adapter'
+if ENV['TEST_DATABASE_URL'].include?("mysql")
+  gem 'dm-postgres-mysql'
+elsif ENV['TEST_DATABASE_URL'].include?("sqlite")
+  gem 'dm-sqlite-adapter'
+else
+  gem 'dm-postgres-adapter'
+end
+
 gem 'dm-validations'
 gem 'dm-timestamps'
 gem 'dm-migrations'
