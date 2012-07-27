@@ -19,6 +19,8 @@ describe ItemTestResult do
     test_feature = create(:board_test_feature, score: -5, board: item.board)
     create(:item_test_result, result: true, board_test_feature: test_feature, item: item)
     item.score.should == 15
+    create(:item_test_result, result: false, board_test_feature: test_feature, item: item)
+    item.score.should == 15
   end
 
 end
