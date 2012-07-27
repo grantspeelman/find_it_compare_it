@@ -8,13 +8,12 @@ class SessionsController < ApplicationController
     auth = {:provider => request.env['omniauth.auth']['provider'].to_s,
             :uid => request.env['omniauth.auth']['uid'].to_s,
             :name => request.env['omniauth.auth']['info']['name'].to_s}
-    if @auth = Authorization.find_from_hash(auth)
-      @auth.update(:auth_hash => auth)
-    else
+    unless @auth = Authorization.find_from_hash(auth)
       # Create a new user or add an auth to existing user, depending on
       # whether there is already a user signed in.
       @auth = Authorization.create_from_hash(auth, current_user)
     end
+    @auth.update(:auth_hash => request.env['omniauth.auth'])
     # Log the authorizing user in.
     self.current_user = @auth.user
 
