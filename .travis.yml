@@ -7,7 +7,6 @@ before_script:
   - "sh -e /etc/init.d/xvfb start"
   - psql -c 'create database fici_test;' -U postgres
   - mysql -e 'create database fici_test;'
-  - bundle exec rake db:automigrate
 script: bundle exec rake spec
 notifications:
   email:
@@ -21,4 +20,3 @@ env:
   - CAPYBARA_DRIVER=selenium
   - TEST_DATABASE_URL=postgres://localhost/fici_test
   - TEST_DATABASE_URL=mysql://localhost/fici_test
-  - TEST_DATABASE_URL=sqlite::memory:

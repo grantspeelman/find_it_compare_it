@@ -8,15 +8,7 @@ gem 'omniauth-google'
 gem 'oa-openid'
 
 gem 'dm-rails'
-database_type = ENV['TEST_DATABASE_URL'] || ENV['DATABASE_URL'] || "postgres"
-if database_type.include?("mysql")
-  gem 'dm-postgres-mysql'
-elsif database_type.include?("sqlite")
-  gem 'dm-sqlite-adapter'
-else
-  gem 'dm-postgres-adapter'
-end
-
+gem 'dm-postgres-adapter'
 gem 'dm-validations'
 gem 'dm-timestamps'
 gem 'dm-migrations'
@@ -39,6 +31,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem 'dm-sqlite-adapter'
+  gem 'dm-mysql-adapter'
 end
 
 group :test do

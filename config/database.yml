@@ -2,7 +2,7 @@ development:
   uri: postgres://localhost/fici_development
 
 test:
-  uri: <%= ENV['TEST_DATABASE_URL'] || 'postgres://localhost/fici_test' %>
+  uri: <%= ENV['TEST_DATABASE_URL'] || '"sqlite::memory:"' %>
 
 production:
    uri: <%= ENV['DATABASE_URL'] || 'postgres://localhost/fici_development' %>
