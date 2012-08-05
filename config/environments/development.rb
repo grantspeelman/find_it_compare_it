@@ -13,8 +13,6 @@ FindItCompareIt::Application.configure do
   config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
 
-  # ActionMailer Config
-  config.action_mailer.default_url_options = {:host => 'cherrypick.dev'}
   # A dummy setup for development - no deliveries, but logged
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = false
@@ -40,5 +38,7 @@ FindItCompareIt::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
-  config.action_controller.asset_host = "http://cherrypick.dev"
+  config.action_mailer.default_url_options = {:host => ENV['HOST_URL']}
+  # Enable serving of images, stylesheets, and JavaScripts from an asset server
+  config.action_controller.asset_host = "http://#{ENV['HOST_URL']}"
 end
