@@ -12,7 +12,6 @@ describe "Items" do
       @auth = create(:auth_billy)
       login_with_oauth(@auth)
       @board = create(:board, user: current_user)
-      @board_feature = create(:board_test_feature, name: "Like", board: @board)
     end
 
     describe "index" do
@@ -42,22 +41,21 @@ describe "Items" do
         click_link 'Boards'
         click_link "items_board_#{@board.id}"
         click_link 'Add Item'
+        fill_in 'Title', with: "SOMETHING"
         fill_in 'Url', with: "http://dev"
-        save_and_open_page
-        check 'Like'
         click_on 'Create'
         page.should have_content("Item was successfully created.")
         click_link 'Boards'
         click_link "items_board_#{@board.id}"
         page.should have_content("http://dev")
+        page.should have_content("SOMETHING")
       end
 
       it "should allow to create via iframe" do
         visit '/iframe/items/new?item[title]=MyItem'
         select @board.name, :from => 'Board'
+        fill_in 'Title', with: "SOMETHING"
         fill_in 'Url', with: "http://dev"
-        save_and_open_page
-        check 'Like'
         click_on 'Create'
         page.should have_content("Item was successfully created. You may close the popup now.")
       end
@@ -113,6 +111,7 @@ describe "Items" do
         click_link 'Boards'
         click_link "items_board_#{@board.id}"
         click_link 'Add Item'
+        fill_in 'Title', with: "SOMETHING"
         fill_in 'Url', with: "http://dev"
         click_on 'Create'
         page.should have_content("Item was successfully created.")
@@ -127,6 +126,7 @@ describe "Items" do
         click_link 'Boards'
         click_link "items_board_#{@board.id}"
         click_link "edit_item_#{other_user_item.id}"
+        fill_in 'Title', with: "SOMETHING"
         fill_in 'Url', with: 'http://thisuser'
         click_on 'Update'
         page.should have_content("Item was successfully updated.")

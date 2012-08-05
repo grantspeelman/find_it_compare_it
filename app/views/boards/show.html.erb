@@ -14,12 +14,4 @@
   </p>
 </div>
 
-<% if  @board.test_features.any? %>
-    <div class="span5">
-      <h2>Test Features</h2>
-      <%= render :partial => 'board_test_features/list',
-                 :locals => {:board_test_features => @board.test_features} %>
-    </div>
-<% end %>
-
 

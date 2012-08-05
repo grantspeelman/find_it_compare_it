@@ -42,9 +42,7 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item.board.test_features.each do |test_feature|
-      @item.test_results.new(board_test_feature: test_feature, user: current_user)
-    end
+
   end
   # POST /items
   # POST /items.json

@@ -13,7 +13,6 @@ class Board
 
   belongs_to :user
   has n, :items
-  has 0..30, :test_features, model: 'BoardTestFeature'
 
   attr_protected :user_id, :test_features_count
 

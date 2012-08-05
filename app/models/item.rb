@@ -4,8 +4,8 @@ class Item
 
   property 'id', Serial
 
-  property 'title', String
-  property 'url', Text, lazy: false
+  property 'title', String, required: true
+  property 'url', Text, lazy: false, required: true
   property 'image_url', Text, lazy: false
   property 'score', Integer, default: 0
 
@@ -15,7 +15,6 @@ class Item
 
   # validates_uniqueness_of :url, :scope => :board_id
 
-  has n, :test_results, model: 'ItemTestResult'
   belongs_to :board
 
   attr_protected :score

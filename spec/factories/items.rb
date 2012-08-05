@@ -3,6 +3,7 @@
 FactoryGirl.define do
 
   factory :item do
+    title "Title"
     sequence :url do |n|
       "http://website#{n}.com"
     end
