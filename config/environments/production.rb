@@ -61,7 +61,4 @@ FindItCompareIt::Application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default :charset => "utf-8"
-  config.action_mailer.default_url_options = {:host => ENV['HOST_URL']}
-  # Enable serving of images, stylesheets, and JavaScripts from an asset server
-  config.action_controller.asset_host = "https://#{ENV['HOST_URL']}"
 end
